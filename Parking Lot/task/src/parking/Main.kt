@@ -20,12 +20,12 @@ fun main() {
 
 //        function to remove a car or notify user if the spot is empty
         fun leave() {
-            val spotToRemoveCar = input[2].toInt() - 1
+            val spotToRemoveCar = input[1].toInt() - 1
             if (parkingLot[spotToRemoveCar] != "0") {
                 parkingLot[spotToRemoveCar] = "0" //This clears the parking spot
-                println("Spot ${input[2]} is free.")
+                println("Spot ${input[1]} is free.")
             } else {
-                println("There is no car in spot ${input[2]}.")
+                println("There is no car in spot ${input[1]}.")
             }
         }
 
