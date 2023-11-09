@@ -65,6 +65,23 @@ fun main() {
             }
         }
 
+        //        function to print all cars of a specific color (case insensitive) on a comma separated line
+        fun regByColor() {
+            if (parkingLot.isEmpty()) {
+                println("Sorry, a parking lot has not been created.")
+            } else {
+                val result =
+                    parkingLot.filter { it.split(" ")[1].equals(input[1], ignoreCase = true) }
+                        .map { it.split(" ")[0] }
+                        .joinToString(", ")
+
+                if (result.isNotEmpty()) {
+                    println(result)
+                } else {
+                    println("No cars with color ${input[1]} were found.")
+                }
+            }
+        }
 
 
         when (input[0]) {
@@ -73,6 +90,7 @@ fun main() {
             "leave" -> leave()
             "create" -> createParkingLot()
             "status" -> showStatus()
+            "reg_by_color" -> regByColor()
         }
     }
 }
