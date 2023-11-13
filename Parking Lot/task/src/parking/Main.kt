@@ -70,10 +70,10 @@ fun main() {
             if (parkingLot.isEmpty()) {
                 println("Sorry, a parking lot has not been created.")
             } else {
-                val result =
-                    parkingLot.filter { it.split(" ")[1].equals(input[1], ignoreCase = true) }
-                        .map { it.split(" ")[0] }
-                        .joinToString(", ")
+                val result = parkingLot.filter {
+                    val words = it.split(" ")
+                    words.size > 1 && words[1].equals(input[1], ignoreCase = true)
+                }.map { it.split(" ")[0] }.joinToString(", ")
 
                 if (result.isNotEmpty()) {
                     println(result)
@@ -88,13 +88,10 @@ fun main() {
             if (parkingLot.isEmpty()) {
                 println("Sorry, a parking lot has not been created.")
             } else {
-                val result = parkingLot
-                    .mapIndexed { index, element ->
-                        index to element.split(" ")[1].equals(input[1], ignoreCase = true)
-                    }
-                    .filter { it.second }
-                    .map { it.first + 1}
-                    .joinToString(", ")
+                val result = parkingLot.mapIndexed { index, element ->
+                    val words = element.split(" ")
+                    index to (words.size > 1 && words[1].equals(input[1], ignoreCase = true))
+                }.filter { it.second }.map { it.first + 1 }.joinToString(", ")
 
                 if (result.isNotEmpty()) {
                     println(result)
@@ -109,13 +106,9 @@ fun main() {
             if (parkingLot.isEmpty()) {
                 println("Sorry, a parking lot has not been created.")
             } else {
-                val result = parkingLot
-                    .mapIndexed { index, element ->
-                        index to element.split(" ")[0].equals(input[1], ignoreCase = true)
-                    }
-                    .filter { it.second }
-                    .map { it.first + 1}
-                    .joinToString(", ")
+                val result = parkingLot.mapIndexed { index, element ->
+                    index to element.split(" ")[0].equals(input[1], ignoreCase = true)
+                }.filter { it.second }.map { it.first + 1 }.joinToString(", ")
 
                 if (result.isNotEmpty()) {
                     println(result)
