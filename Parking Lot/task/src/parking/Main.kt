@@ -83,6 +83,49 @@ fun main() {
             }
         }
 
+        // function to print the indexes of cars with a specific color (case insensitive) on a comma-separated line
+        fun spotByColor() {
+            if (parkingLot.isEmpty()) {
+                println("Sorry, a parking lot has not been created.")
+            } else {
+                val result = parkingLot
+                    .mapIndexed { index, element ->
+                        index to element.split(" ")[1].equals(input[1], ignoreCase = true)
+                    }
+                    .filter { it.second }
+                    .map { it.first + 1}
+                    .joinToString(", ")
+
+                if (result.isNotEmpty()) {
+                    println(result)
+                } else {
+                    println("No cars with color ${input[1]} were found.")
+                }
+            }
+        }
+
+        // function to print the indexes of cars with a specific license plate
+        fun spotByReg() {
+            if (parkingLot.isEmpty()) {
+                println("Sorry, a parking lot has not been created.")
+            } else {
+                val result = parkingLot
+                    .mapIndexed { index, element ->
+                        index to element.split(" ")[0].equals(input[1], ignoreCase = true)
+                    }
+                    .filter { it.second }
+                    .map { it.first + 1}
+                    .joinToString(", ")
+
+                if (result.isNotEmpty()) {
+                    println(result)
+                } else {
+                    println("No cars with registration number ${input[1]} were found.")
+                }
+            }
+        }
+
+
 
         when (input[0]) {
             "exit" -> break
@@ -91,6 +134,8 @@ fun main() {
             "create" -> createParkingLot()
             "status" -> showStatus()
             "reg_by_color" -> regByColor()
+            "spot_by_color" -> spotByColor()
+            "spot_by_reg" -> spotByReg()
         }
     }
 }
